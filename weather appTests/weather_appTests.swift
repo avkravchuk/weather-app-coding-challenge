@@ -1,10 +1,3 @@
-//
-//  weather_appTests.swift
-//  weather appTests
-//
-//  Created by Aleksey Krauchuk on 15/08/2024.
-//
-
 import XCTest
 @testable import weather_app
 
