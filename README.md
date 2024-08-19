@@ -1,5 +1,4 @@
-This application uses Alamofire Package to perform netwok calls. Check manual here https://github.com/Alamofire/Alamofire/tree/master
-
+This application uses Alamofire Package to perform netwok calls. Check manual here https://github.com/Alamofire/Alamofire
 Assignment Title: Weather App
 
 Objective: Build a simple iOS weather app that fetches weather data from a public API and displays it to the user in a user-friendly interface.
