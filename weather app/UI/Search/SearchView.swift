@@ -31,7 +31,7 @@ struct SearchView: View {
         case .loaded(let searchResult):
             searchResultView(searchResult: searchResult)
         case .failed(let error):
-            Text(error.localizedDescription)
+            networkErrorView(error: error)
         }
     }
     
@@ -113,8 +113,20 @@ struct SearchView: View {
                 .foregroundStyle(.foreground)
         }
     }
+    
+    @ViewBuilder
+    func networkErrorView(error: Error) -> some View {
+        VStack(spacing: 5) {
+            Image(systemName: "exclamationmark.triangle")
+                .foregroundStyle(.red)
+            
+            Text(error.localizedDescription)
+                .font(.footnote)
+                .multilineTextAlignment(.center)
+        }
+    }
 }
 
 #Preview {
-    SearchView(viewModel: SearchViewModel(searchUseCase: SearchUseCase()))
+    SearchView(viewModel: SearchViewModel(searchUseCase: SearchUseCase(networkManager: NetworkManager())))
 }

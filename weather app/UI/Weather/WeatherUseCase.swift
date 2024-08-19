@@ -8,7 +8,11 @@ protocol WeatherUseCaseType {
 
 class WeatherUseCase: WeatherUseCaseType {
     
-    let networkManager = NetworkManager()
+    let networkManager: NetworkManagerType
+    
+    init(networkManager: NetworkManagerType) {
+        self.networkManager = networkManager
+    }
     
     func loadWeather(for searchResult: SearchResult, units: Units) async throws -> CurrentWeather {
         do {

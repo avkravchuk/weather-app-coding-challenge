@@ -10,7 +10,7 @@ protocol NetworkManagerType {
 class NetworkManager: NetworkManagerType {
     
     func searchRegion(text: String) async throws -> [RegionModel] {
-        let url = "https://api.openweathermap.org/geo/1.0/direct"
+        let url = NetworkNames.apiBaseURL + "/geo/1.0/direct"
         
         let parameters = [
             "q" : text,
@@ -33,7 +33,7 @@ class NetworkManager: NetworkManagerType {
     }
     
     func loadWeather(lat: Double, lon: Double, units: Units) async throws -> WeatherModel {
-        let url = "https://api.openweathermap.org/data/2.5/weather"
+        let url = NetworkNames.apiBaseURL + "/data/2.5/weather"
         
         let parameters = [
             "lat" : String(lat),
@@ -57,11 +57,13 @@ class NetworkManager: NetworkManagerType {
     }
     
     func loadWeatherIcon(weatherCode: String) async throws -> Data {
-        let url =  "https://openweathermap.org/img/wn/\(weatherCode)@2x.png"
+        let url =  NetworkNames.baseURL + "/img/wn/\(weatherCode)@2x.png"
         
         return try await withUnsafeThrowingContinuation { continuation in
             AF.request(url)
                 .responseData { response in
+                    debugPrint(response)
+                    
                     switch response.result {
                     case .success(let data):
                         continuation.resume(returning: data)

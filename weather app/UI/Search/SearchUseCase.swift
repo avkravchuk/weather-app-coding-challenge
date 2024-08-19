@@ -6,7 +6,11 @@ protocol SearchUseCaseType {
 
 class SearchUseCase: SearchUseCaseType {
     
-    let networkManager = NetworkManager()
+    let networkManager: NetworkManagerType
+    
+    init(networkManager: NetworkManagerType) {
+        self.networkManager = networkManager
+    }
     
     func searchRegion(text: String) async throws -> [SearchResult] {
         do {

@@ -7,7 +7,7 @@ struct WeatherViewRepresentable: UIViewControllerRepresentable {
     let units: Units
     
     func makeUIViewController(context: Context) -> WeatherViewController {
-        let useCase = WeatherUseCase()
+        let useCase = WeatherUseCase(networkManager: NetworkManager())
         let viewModel = WeatherViewModel(searchResult: searchResult, units: units, useCase: useCase)
         return WeatherViewController(viewModel: viewModel)
     }
