@@ -49,5 +49,9 @@ class WeatherViewController: UIViewController {
                 }
             }
             .store(in: &cancellables)
+        
+        weatherView.onReloadButtonTap = { [weak self] in
+            self?.viewModel.loadWeather()
+        }
     }
 }

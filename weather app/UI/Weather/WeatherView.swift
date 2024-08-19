@@ -3,6 +3,7 @@ import UIKit
 class WeatherView: UIView {
     
     private let weatherIconSize: CGFloat = 100
+    private let refreshButtonSize: CGFloat = 30
     
     // MARK: - Subviews
     
@@ -43,6 +44,16 @@ class WeatherView: UIView {
         let view = UIActivityIndicatorView()
         view.isHidden = true
         view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private lazy var refreshButton: UIButton = {
+        let view = UIButton()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.setImage(UIImage(systemName: "arrow.clockwise"), for: .normal)
+        view.addAction(UIAction(handler: { _ in
+            self.onReloadButtonTap?()
+        }), for: .touchUpInside)
         return view
     }()
     
@@ -121,6 +132,14 @@ class WeatherView: UIView {
         NSLayoutConstraint.activate([
             activityIndicator.centerXAnchor.constraint(equalTo: centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor)
+        ])
+        
+        addSubview(refreshButton)
+        NSLayoutConstraint.activate([
+            refreshButton.leadingAnchor.constraint(equalTo: cityLabel.trailingAnchor, constant: Size.paddingMedium),
+            refreshButton.centerYAnchor.constraint(equalTo: cityLabel.centerYAnchor),
+            refreshButton.widthAnchor.constraint(equalToConstant: refreshButtonSize),
+            refreshButton.heightAnchor.constraint(equalToConstant: refreshButtonSize)
         ])
     }
 }
