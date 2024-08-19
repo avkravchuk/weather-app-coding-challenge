@@ -37,7 +37,12 @@ class WeatherView: UIView {
         return view
     }()
     
-    
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let view = UIActivityIndicatorView()
+        view.isHidden = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     
     // MARK: - Public properties
     
@@ -70,6 +75,10 @@ class WeatherView: UIView {
         weatherIconView.image = weatherIcon
     }
     
+    func activityIndicator(isVisible: Bool) {
+        isVisible ? activityIndicator.startAnimating() : activityIndicator.stopAnimating()
+        activityIndicator.isHidden = !isVisible
+    }
     
     // MARK: - Private methods
     
@@ -104,6 +113,12 @@ class WeatherView: UIView {
         NSLayoutConstraint.activate([
             feelsLikeLabel.topAnchor.constraint(equalTo: temperatureLabel.bottomAnchor, constant: 10),
             feelsLikeLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
+        ])
+        
+        addSubview(activityIndicator)
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
     }
 }

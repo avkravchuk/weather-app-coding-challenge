@@ -25,39 +25,27 @@ class WeatherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let add = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(reloadTapped))
-        navigationItem.rightBarButtonItem = add
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        let add = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(reloadTapped))
-        navigationItem.rightBarButtonItem = add
-        
-    }
-    
-    @objc
-    func reloadTapped() {
-        
-    }
-    
+        viewModel.loadWeather()
+    }    
     
     private func setupBindings() {
-        weatherView.update(with: viewModel.searchResult)
-        
         viewModel.$state
-            .sink { state in
+            .sink { [weak self] state in
+                guard let self = self else { return }
                 switch state {
                 case .idle:
-                    print(state)
+                    weatherView.update(with: viewModel.searchResult)
+                    weatherView.activityIndicator(isVisible: true)
                 case .loading:
-                    print(state)
+                    weatherView.activityIndicator(isVisible: true)
                 case .loaded(let weather, let icon):
-                    self.weatherView.update(with: weather)
+                    weatherView.update(with: weather)
                     if let icon = icon {
-                        self.weatherView.update(weatherIcon: icon)
+                        weatherView.update(weatherIcon: icon)
                     }
+                    weatherView.activityIndicator(isVisible: false)
                 case .failed(let error):
-                    print(state)
+                    weatherView.activityIndicator(isVisible: false)
                 }
             }
             .store(in: &cancellables)

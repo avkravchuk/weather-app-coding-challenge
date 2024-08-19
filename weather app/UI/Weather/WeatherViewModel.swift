@@ -29,7 +29,6 @@ class WeatherViewModel {
         self.searchResult = searchResult
         self.useCase = useCase
         self.units = units
-        loadWeather()
     }
     
     // MARK: - Public methods
