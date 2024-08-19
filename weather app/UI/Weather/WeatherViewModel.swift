@@ -21,12 +21,14 @@ class WeatherViewModel {
     
     let searchResult: SearchResult
     private let useCase: WeatherUseCaseType
+    private let units: Units
     
     // MARK: - Init
     
-    init(searchResult: SearchResult, useCase: WeatherUseCaseType) {
+    init(searchResult: SearchResult, units: Units, useCase: WeatherUseCaseType) {
         self.searchResult = searchResult
         self.useCase = useCase
+        self.units = units
         loadWeather()
     }
     
@@ -37,7 +39,7 @@ class WeatherViewModel {
         
         Task {
             do {
-                let currentWeather = try await useCase.loadWeather(for: searchResult)
+                let currentWeather = try await useCase.loadWeather(for: searchResult, units: units)
                 let weatherIcon = try await useCase.loadWeatherIcon(weatherCode: currentWeather.icon)
                 state = .loaded(currentWeather, weatherIcon)
             } catch let error {

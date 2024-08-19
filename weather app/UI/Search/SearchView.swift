@@ -3,6 +3,7 @@ import SwiftUI
 struct SearchView: View {
     
     @ObservedObject var viewModel: SearchViewModel
+    @State var pickerSelection: Units = .metric
     
     var body: some View {
         NavigationView {
@@ -70,7 +71,7 @@ struct SearchView: View {
         List {
             ForEach(searchResult) { result in
                 NavigationLink {
-                    WeatherViewRepresentable(searchResult: result)
+                    WeatherViewRepresentable(searchResult: result, units: viewModel.units)
                 } label: {
                     searchResultRow(model: result)
                 }
@@ -102,7 +103,11 @@ struct SearchView: View {
     
     var toolbarView: some View {
         Menu {
-            Text("test")
+            Picker("Units", selection: $viewModel.units) {
+                ForEach(Units.allCases) { units in
+                    Text(units.rawValue)
+                }
+            }
         } label: {
             Image(systemName: "gear")
                 .foregroundStyle(.foreground)

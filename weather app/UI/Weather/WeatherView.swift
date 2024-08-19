@@ -1,15 +1,5 @@
 import UIKit
 
-
-//let weather: String
-//let weatherDescription: String
-//let temperature: Double
-//let feelsLike: Double
-//let tempMin: Double
-//let tempMax: Double
-//let pressure: Int
-//let humidity: Int
-
 class WeatherView: UIView {
     
     // MARK: - Subviews

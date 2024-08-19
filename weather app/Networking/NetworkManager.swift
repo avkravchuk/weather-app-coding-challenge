@@ -3,7 +3,7 @@ import Alamofire
 
 protocol NetworkManagerType {
     func searchRegion(text: String) async throws -> [RegionModel]
-    func loadWeather(lat: Double, lon: Double) async throws -> WeatherModel
+    func loadWeather(lat: Double, lon: Double, units: Units) async throws -> WeatherModel
     func loadWeatherIcon(weatherCode: String) async throws -> Data
 }
 
@@ -32,13 +32,14 @@ class NetworkManager: NetworkManagerType {
         }
     }
     
-    func loadWeather(lat: Double, lon: Double) async throws -> WeatherModel {
+    func loadWeather(lat: Double, lon: Double, units: Units) async throws -> WeatherModel {
         let url = "https://api.openweathermap.org/data/2.5/weather"
         
         let parameters = [
             "lat" : String(lat),
             "lon" : String(lon),
-            "appid" : NetworkNames.apiKey
+            "appid" : NetworkNames.apiKey,
+            "units" : units.rawValue
         ]
         
         let result = await AF.request(url, parameters: parameters)

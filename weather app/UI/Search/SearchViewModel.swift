@@ -16,6 +16,7 @@ class SearchViewModel: ObservableObject {
     // MARK: - Public properties
     
     @Published var searchText = ""
+    @Published var units: Units = .metric
     @Published private(set) var state: State = .idle
     
     // MARK: - Private
