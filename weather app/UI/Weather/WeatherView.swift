@@ -2,6 +2,8 @@ import UIKit
 
 class WeatherView: UIView {
     
+    private let weatherIconSize: CGFloat = 100
+    
     // MARK: - Subviews
     
     private lazy var cityLabel: UILabel = {
@@ -85,15 +87,15 @@ class WeatherView: UIView {
     private func setupConstraints() {
         addSubview(cityLabel)
         NSLayoutConstraint.activate([
-            cityLabel.topAnchor.constraint(equalTo: topAnchor, constant: 20),
+            cityLabel.topAnchor.constraint(equalTo: topAnchor, constant: Size.paddingLarge),
             cityLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
         
         addSubview(weatherIconView)
         NSLayoutConstraint.activate([
-            weatherIconView.topAnchor.constraint(equalTo: cityLabel.bottomAnchor, constant: 50),
-            weatherIconView.widthAnchor.constraint(equalToConstant: 100),
-            weatherIconView.heightAnchor.constraint(equalToConstant: 100),
+            weatherIconView.topAnchor.constraint(equalTo: cityLabel.bottomAnchor, constant: Size.paddingExtraLarge),
+            weatherIconView.widthAnchor.constraint(equalToConstant: weatherIconSize),
+            weatherIconView.heightAnchor.constraint(equalToConstant: weatherIconSize),
             weatherIconView.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
         
@@ -105,13 +107,13 @@ class WeatherView: UIView {
         
         addSubview(temperatureLabel)
         NSLayoutConstraint.activate([
-            temperatureLabel.topAnchor.constraint(equalTo: weatherDescriptionLabel.bottomAnchor, constant: 50),
+            temperatureLabel.topAnchor.constraint(equalTo: weatherDescriptionLabel.bottomAnchor, constant: Size.paddingExtraLarge),
             temperatureLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
         
         addSubview(feelsLikeLabel)
         NSLayoutConstraint.activate([
-            feelsLikeLabel.topAnchor.constraint(equalTo: temperatureLabel.bottomAnchor, constant: 10),
+            feelsLikeLabel.topAnchor.constraint(equalTo: temperatureLabel.bottomAnchor, constant: Size.paddingMedium),
             feelsLikeLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
         

@@ -9,8 +9,8 @@ import SwiftUI
 
 struct NetworkErrorView: View {
     var body: some View {
-        VStack(spacing: 5) {
-            Image(systemName: "wifi.slash")
+        VStack(spacing: Size.paddingMedium) {
+            Images.networkError
                 .foregroundStyle(.red)
             Text("Network connection seems to be offline.\nPlease check your connection.")
                 .multilineTextAlignment(.center)

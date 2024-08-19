@@ -36,8 +36,8 @@ struct SearchView: View {
     }
     
     var startSearchView: some View {
-        VStack(spacing: 10) {
-            Image(systemName: "location.magnifyingglass")
+        VStack(spacing: Size.paddingMedium) {
+            Images.search
                 .font(.title)
                 
             Text("Start by typing location.")
@@ -47,8 +47,8 @@ struct SearchView: View {
     }
     
     var emptyResultView: some View {
-        VStack(spacing: 10) {
-            Image(systemName: "location.magnifyingglass")
+        VStack(spacing: Size.paddingMedium) {
+            Images.search
                 .font(.title)
             
             Text("No results.\nPlease check your spelling.")
@@ -82,7 +82,7 @@ struct SearchView: View {
     
     @ViewBuilder
     func searchResultRow(model: SearchResult) -> some View {
-        HStack(spacing: 5) {
+        HStack(spacing: Size.paddingSmall) {
             Text(model.emojiFlag)
             Text(model.name)
             
@@ -109,15 +109,15 @@ struct SearchView: View {
                 }
             }
         } label: {
-            Image(systemName: "gear")
+            Images.settings
                 .foregroundStyle(.foreground)
         }
     }
     
     @ViewBuilder
     func networkErrorView(error: Error) -> some View {
-        VStack(spacing: 5) {
-            Image(systemName: "exclamationmark.triangle")
+        VStack(spacing: Size.paddingMedium) {
+            Images.warning
                 .foregroundStyle(.red)
             
             Text(error.localizedDescription)

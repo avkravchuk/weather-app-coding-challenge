@@ -45,7 +45,7 @@ class WeatherViewController: UIViewController {
                     }
                     weatherView.activityIndicator(isVisible: false)
                 case .failed(let error):
-                    weatherView.activityIndicator(isVisible: false)
+                    weatherView.activityIndicator(isVisible: false) // Error is not handled here
                 }
             }
             .store(in: &cancellables)
