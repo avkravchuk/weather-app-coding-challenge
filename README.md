@@ -1,9 +1,10 @@
 This application uses Alamofire Package to perform netwok calls. Check manual here https://github.com/Alamofire/Alamofire
-Assignment Title: Weather App
 
-Objective: Build a simple iOS weather app that fetches weather data from a public API and displays it to the user in a user-friendly interface.
+# Assignment Title: Weather App
 
-Requirements:
+### Objective: Build a simple iOS weather app that fetches weather data from a public API and displays it to the user in a user-friendly interface.
+
+### Requirements:
 ✅ Use the OpenWeatherMap API (https://openweathermap.org/api) to fetch weather data. 
 ✅ Support iOS 15 and up
 ✅ The app should have at least two screens:
@@ -16,7 +17,7 @@ Requirements:
 ✅ Develop one screen in SwiftUI and one screen using UIKit
 ✅ In the search field present suggestions for locations as user types in City or zipcode
 
-Bonus Points (Optional):
+### Bonus Points (Optional):
 ❌ Implement a unit test for a critical part of your code.
 ✅ Allow the user to switch between Celsius and Fahrenheit.
 ✅ Use a design pattern like MVVM and Combine framework
