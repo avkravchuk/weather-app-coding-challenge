@@ -17,7 +17,7 @@ This application uses Alamofire Package to perform netwok calls. Check manual he
     
 ✅ Implement error handling for cases such as no internet connection or invalid city names.
 
-❌ Provide a refresh mechanism to update the weather data.
+✅ Provide a refresh mechanism to update the weather data.
 
 ✅ Use Swift and follow best practices for iOS development.
 
